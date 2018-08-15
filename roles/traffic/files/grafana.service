@@ -1,0 +1,18 @@
+[Unit]
+Description=Grafana container
+After=docker.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f grafana
+ExecStart=/usr/bin/docker run -i --rm --name=grafana \
+      --network prometheus \
+      -p 3000:3000 \
+      -v grafana:/grafana/ \
+      -v /etc/grafana/:/etc/grafana/ \
+      grafana/grafana
+ExecReload=/bin/kill -s HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

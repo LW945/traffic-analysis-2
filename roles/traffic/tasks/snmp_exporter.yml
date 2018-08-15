@@ -1,0 +1,27 @@
+#git clone https://github.com/huiyiqun/snmp_exporter.git && cd snmp_exporter/generator
+#docker built -t snmp-generator .
+#alias snmp_generator='docker run -it --rm -v /etc/prometheus:/etc/prometheus -v /etc/prometheus/generator.yml:/opt/generator.yml snmp_generator generate -o /etc/prometheus/snmp.yml'
+
+#/etc/prometheus/generator.yml
+#modules:
+#  public:
+#    walk:
+#      - system
+#      - ifTable
+
+---
+- name: copy snmp yml
+  copy:
+    src: snmp.yml
+    dest: /etc/prometheus/snmp.yml
+
+- name: copy snmp service
+  copy:
+    src: snmp_exporter.service
+    dest: /etc/systemd/system/snmp_exporter.service
+
+- name: enable snmp service
+  systemd:
+    name: snmp_exporter
+    enabled: yes
+    state: started

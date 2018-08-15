@@ -1,0 +1,15 @@
+[Unit]
+Description=Prometheus SNMP Exporter container
+After=docker.service
+ 
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f snmp-exporter
+ExecStart=/usr/bin/docker run -i --rm --name=snmp-exporter \
+        -v /etc/prometheus/:/etc/prometheus/ \
+        --network prometheus \
+        prom/snmp-exporter --config.file /etc/prometheus/snmp.yml
+
+[Install]
+WantedBy=multi-user.target

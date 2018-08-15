@@ -20,7 +20,7 @@ roles/
 			snmp-exporter.service.j2
 			blackbox-exporter.service.j2
 		files/
-			grafana.config
+			grafana.ini
 			prometheus.config
 			cadvisor.config
 			snmp-exporter.config

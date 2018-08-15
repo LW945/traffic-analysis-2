@@ -1,0 +1,27 @@
+host_vars/
+	netflow-host1.yml
+
+traffic.yml
+
+roles/
+	traffic/
+		tasks/
+			main.yml
+			docker.yml
+			grafana.yml
+			prometheus.yml
+			cadvisor.yml
+			snmp-exporter.yml
+			blackbox-exporter.yml
+    templates/
+			grafana.service.j2
+			prometheus.service.j2
+			cadvisor.service.j2
+			snmp-exporter.service.j2
+			blackbox-exporter.service.j2
+		files/
+			grafana.config
+			prometheus.config
+			cadvisor.config
+			snmp-exporter.config
+			blackbox-exporter.config

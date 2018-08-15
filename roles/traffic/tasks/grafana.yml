@@ -1,38 +1,37 @@
 ---
-- tasks:
-    - name: mkdir config dir
-      command: mkdir /etc/grafana
+- name: mkdir config dir
+  command: mkdir /etc/grafana
 
-    - name: copy grafana config
-      copy:
-        src: grafana.ini
-        dest: /etc/grafana/grafana.ini
+- name: copy grafana config
+  copy:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini
 
-    - name: copy grafana service
-      copy:
-        src: grafana.service
-        dest: /etc/systemd/system/grafana.service
+- name: copy grafana service
+  copy:
+    src: grafana.service
+    dest: /etc/systemd/system/grafana.service
 
-    - name: enable and start grafana service
-      systemd:
-        name: grafana
-        enabled: yes
-        state: started
+- name: enable and start grafana service
+  systemd:
+    name: grafana
+    enabled: yes
+    state: started
 
-    - name: mkdir json dir
-      command: mkdir /etc/grafana/provisioning
+- name: mkdir json dir
+  command: mkdir /etc/grafana/provisioning
 
-    - name: copy grafana netflow.json
-      copy:
-        src: netflow.json
-        dest: /etc/grafana/provisioning
+- name: copy grafana netflow.json
+  copy:
+    src: netflow.json
+    dest: /etc/grafana/provisioning
 
-    - name: copy grafana stenographer.json
-      copy:
-        src: stenographer.json
-        dest: /etc/grafana/provisioning
+- name: copy grafana stenographer.json
+  copy:
+    src: stenographer.json
+    dest: /etc/grafana/provisioning
 
-    - name: copy grafana snmp.json
-      copy:
-        src: snmp.json
-        dest: /etc/grafana/provisioning
+- name: copy grafana snmp.json
+  copy:
+    src: snmp.json
+    dest: /etc/grafana/provisioning

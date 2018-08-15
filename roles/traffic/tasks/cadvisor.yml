@@ -1,2 +1,11 @@
 ---
-- name:
+- name: copy cadvisor service
+  copy:
+    src: cadvisor.service
+    dest: /etc/systemd/system/cadvisor.service
+
+- name: enable cadvisor
+  systemd:
+    name: grafana
+    enabled: yes
+    state: started

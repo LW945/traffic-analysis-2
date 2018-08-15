@@ -1,0 +1,22 @@
+[Unit]
+Description=cAdvisor container
+After=docker.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f cadvisor
+ExecStart=/usr/bin/docker run -i --rm --name=cadvisor \
+        -v /:/rootfs:ro \
+        -v /var/run:/var/run:rw \
+        -v /sys:/sys:ro \
+        -v /var/lib/docker/:/var/lib/docker:ro \
+        -v /dev/disk/:/dev/disk:ro \
+        -v /cgroup:/cgroup:ro \
+        -p 8080:8080 \
+        --network prometheus \
+        google/cadvisor:latest
+
+[Install]
+WantedBy=multi-user.target
+

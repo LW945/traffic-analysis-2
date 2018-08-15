@@ -1,0 +1,19 @@
+---
+- name: make config dir
+  command: mkdir /etc/blackbox_exporter
+
+- name: copy config file
+  copy:
+    src: blackbox_exporter.yml
+    dest: /etc/blackbox_exporter/config.yml
+
+- name: copy service file
+  copy:
+    src: blackbox_exporter.service
+    dest: /etc/systemd/system/blackbox_exporter.service
+
+- name: enable service
+  systemd:
+    name: blackbox_exporter.service
+    enabled: yes
+    state: started

@@ -1,0 +1,15 @@
+---
+- tasks:
+    - name: mkdir config dir
+      command: mkdir /etc/prometheus
+
+    - name: copy prometheus config
+      copy:
+        src: prometheus.yml
+        dest: /etc/prometheus/prometheus.yml
+
+    - name: enable prometheus
+      systemd:
+        name: prometheus
+        enabled: yes
+        state: started

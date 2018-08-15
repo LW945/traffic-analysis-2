@@ -1,0 +1,19 @@
+[Unit]
+Description=Prometheus container
+After=docker.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f prometheus
+ExecStart=/usr/bin/docker run -i --rm --name=prometheus \
+        --network prometheus \
+        -p 9090:9090 \
+        -p 9116:9116 \
+        -v /etc/prometheus/:/etc/prometheus/ \
+        -v prometheus:/prometheus/ \
+        lw/prometheus
+ExecReload=/bin/kill -s HUP $MAINPID
+ 
+[Install]
+WantedBy=multi-user.target

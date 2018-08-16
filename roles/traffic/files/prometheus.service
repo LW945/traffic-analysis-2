@@ -12,7 +12,7 @@ ExecStart=/usr/bin/docker run -i --rm --name=prometheus \
         -p 9116:9116 \
         -v /etc/prometheus/:/etc/prometheus/ \
         -v prometheus:/prometheus/ \
-        lw/prometheus
+        lw945/prometheus
 ExecReload=/bin/kill -s HUP $MAINPID
  
 [Install]

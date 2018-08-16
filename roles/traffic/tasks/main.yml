@@ -1,0 +1,11 @@
+---
+- tasks:
+    - include: init.yml
+    - include: docker.yml
+    - include: blackbox.yml
+    - include: snmp_exporter.yml
+    - include: netflow.yml
+    - include: prometheus.yml
+    - include: grafana.yml
+    - include: cadvisor.yml
+    - include: stenographer.yml

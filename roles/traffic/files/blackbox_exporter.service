@@ -11,7 +11,7 @@ ExecStart=/usr/bin/docker run -i --rm --name=blackbox_exporter \
         --cap-add NET_RAW \
         -p 9115:9115 \
         -v /etc/blackbox_exporter/:/etc/blackbox_exporter/ \
-        lw/blackbox_exporter
+        lw945/blackbox_exporter
 ExecReload=/bin/kill -s HUP $MAINPID
  
 [Install]

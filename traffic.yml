@@ -1,0 +1,4 @@
+- name: traffic-analysis-2
+  hosts: webservers
+  roles:
+    - traffic

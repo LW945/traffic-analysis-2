@@ -1,0 +1,14 @@
+---
+- name: mkdir for data
+  command: mkdir /data/netflow
+ 
+- name: copy service
+  copy:
+    src: netflow.service
+    dest: /etc/systemd/system/netflow.service
+ 
+- name: enable service
+  systemd:
+    name: netflow
+    enabled: yes
+    state: started

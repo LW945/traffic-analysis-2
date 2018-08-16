@@ -1,0 +1,16 @@
+[Unit]
+Description= Netflow container
+After=docker.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f netflow
+ExecStart=/usr/bin/docker run -i --rm --name=netflow \
+        --network host \
+        -v /data/netflow:/data/netflow \
+        huiyiqun/nfdump \
+        -b 0.0.0.0 -4 -w -l /data/netflow/ -p 63100 -S 1
+
+[Install]
+WantedBy=multi-user.target

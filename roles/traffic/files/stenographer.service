@@ -1,0 +1,18 @@
+[Unit]
+Description= Stenographer container for interface
+After=docker.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f stenographer
+ExecStart=/usr/bin/docker run -i --rm --name=stenographer \
+        --network host \
+        --cap-add NET_ADMIN --cap-add IPC_LOCK \
+        -v /data:/data \
+        -v /etc/stenographer/config:/etc/stenographer/config \
+        -v /etc/stenographer/certs:/etc/stenographer/certs \
+        huiyiqun/stenographer stenographer -syslog=false
+
+[Install]
+WantedBy=multi-user.target

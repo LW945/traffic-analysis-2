@@ -1,0 +1,16 @@
+{
+  "Threads": [
+    { "PacketsDirectory": "/data/packets"
+    , "IndexDirectory": "/data/index"
+    , "MaxDirectoryFiles": 30000
+    , "DiskFreePercentage": 10
+    }
+  ]
+  , "StenotypePath": "/usr/bin/stenotype"
+  , "Interface": "eth0"
+  , "Port": 2333 
+  , "Host": "0.0.0.0"
+  , "Flags": ["-v", "--blocks=128"]
+  , "CertPath": "/etc/stenographer/certs"
+}
+

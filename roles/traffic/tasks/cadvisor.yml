@@ -6,6 +6,6 @@
 
 - name: enable cadvisor
   systemd:
-    name: grafana
+    name: cadvisor 
     enabled: yes
     state: started

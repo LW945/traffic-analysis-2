@@ -1,0 +1,47 @@
+---
+- name: mkdir for config
+  command: mkdir /etc/stenographer
+
+- name: mkdir for certs
+  command: mkdir /etc/stenographer/certs
+
+- name: mkdir for data
+  command: mkdir /data/packets
+
+- name: mkdir for data
+  command: mkdir /data/index
+
+- name: chmod for stenographer
+  command: chmod -R 666 /data
+
+- name: copy config
+  copy:
+    src: stenographer_config.yml
+    dest: /etc/stenographer/config
+
+- name: copy service
+  copy:
+    src: stenographer.service
+    dest: /etc/systemd/system/stenographer.service
+
+- name: copy certs ca_cert
+  copy:
+    src: ca_cert.pem
+    dest: /etc/stenographer/certs/ca_cert.pem
+
+- name: copy certs server_cert
+  copy:
+    src: server_cert.pem
+    dest: /etc/stenographer/certs/server_cert.pem
+
+- name: copy certs server_key
+  copy:
+    src: server_key.pem
+    dest: /etc/stenographer/certs/server_key.pem
+
+- name: enable service
+  systemd:
+    name: stenographer
+    enabled: yes
+    state: started
+
